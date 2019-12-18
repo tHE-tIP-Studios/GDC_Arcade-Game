@@ -4,7 +4,8 @@ Fourth Game Design Club Game
 # Player Control  Scheme
 
 WARNING!
-'There are no diagonals, just 4 directions' 
+
+`There are no diagonals, just 4 directions`
 
 ## P1
 
