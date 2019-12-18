@@ -7,7 +7,7 @@ WARNING!
 
 `There are no diagonals, just 4 directions`
 
-## P1
+## Player 1
 
 - Up - `W`
 
@@ -23,7 +23,7 @@ WARNING!
 
 - Button 3 - `V`
 
-## Player 1
+## Player 2
 
 - Up - `↑`
 
