@@ -8,7 +8,7 @@ public class CharacterController : MonoBehaviour
     [Foldout("Movement Parameters")]
     [SerializeField] private float moveSpeed = 20;
     [Foldout("Movement Parameters")]
-    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private LayerMask groundMask = default;
     [Foldout("Movement Parameters")]
     [SerializeField] private float jumpSpeed = 100;
     [Foldout("Movement Parameters")]

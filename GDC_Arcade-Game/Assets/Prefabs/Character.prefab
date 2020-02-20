@@ -180,11 +180,11 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  jumpSpeed: 100
+  jumpSpeed: 350
   jumpSustain: 0.2
   coyoteTime: 0.1
   switchDirectionDrag: 0.871
-  gravityJumpMultiplier: 25
+  gravityJumpMultiplier: 150
   groundPoint: {fileID: 7611045042109870888}
   xAxis: Horizontal
   jump: Jump
