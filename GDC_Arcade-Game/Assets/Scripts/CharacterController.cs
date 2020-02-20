@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), (typeof(CapsuleCollider2D)))]
 public class CharacterController : MonoBehaviour
 {
     [Foldout("Movement Parameters")]
