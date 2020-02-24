@@ -24,24 +24,5 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
             MoveTrap();
             ChangeDirection();
         }
-
-        protected override void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("Player"))
-            {
-                _knockBackDir =
-                    (other.transform.position - transform.position).normalized;
-
-                Player.PlayerBehaviour pStats = other.
-                    GetComponent<Player.PlayerBehaviour>();
-
-                pStats.OnHit(new Vector2(
-                    _knockBack.x * _knockBackDir.x, _knockBack.y));
-
-                print("Im hitting a player");
-                print(_knockBack);
-                print(_knockBackDir);
-            }
-        }
     }
 }

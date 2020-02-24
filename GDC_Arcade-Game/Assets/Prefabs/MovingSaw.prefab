@@ -133,4 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveDistant: {x: 50, y: 0, z: 0}
   _moveTime: 2
-  _knockBack: {x: 35000, y: 10000}
+  _knockBack: {x: 40000, y: 11250}
+  _wakeUpTime: 0
+  _activeTime: 0
+  _cooldownTime: 0

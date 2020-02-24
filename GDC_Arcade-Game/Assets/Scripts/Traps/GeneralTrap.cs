@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 namespace GDC_Arcade_Game.Assets.Scripts.Traps
 {
@@ -19,6 +20,22 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
         /// </summary>
         [SerializeField] protected Vector2 _knockBack = default;
         /// <summary>
+        /// Variable that contains the time for a trap to activate
+        /// </summary>
+        [Tooltip("To be used if traps that require a start up time, like FlameWall")]
+        [SerializeField] protected float _wakeUpTime = default;
+        /// <summary>
+        /// Variable that contains the time a trap is activate
+        /// </summary>
+        [Tooltip("To be used if traps that require a start up time, like FlameWall")]
+        [SerializeField] protected float _activeTime = default;
+        /// <summary>
+        /// Variable that contains the time a trap is inactive before activating
+        /// again
+        /// </summary>
+        [Tooltip("To be used if traps that require a start up time, like FlameWall")]
+        [SerializeField] protected float _cooldownTime = default;
+        /// <summary>
         /// Knockback direction
         /// </summary>
         protected Vector2 _knockBackDir = default;
@@ -38,14 +55,20 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
         /// </summary>
         protected bool _moveRight = default;
         /// <summary>
-        /// Variable that contains the time for a trap to activate
-        /// </summary>
-        protected float _wakeUpTime = default;
-        /// <summary>
         /// Variable responsible to be used on a coroutine to check if trap
         /// is going to be activated
         /// </summary>
         protected WaitForSeconds _wakeUpTimer = default;
+        /// <summary>
+        /// Variable responsible to be used on a coroutine to check how long
+        /// a trap is active
+        /// </summary>
+        protected WaitForSeconds _activeTimer = default;
+        /// <summary>
+        /// Variable responsible to be used on a coroutine to check how long
+        /// a trap is inactive
+        /// </summary>
+        protected WaitForSeconds _cooldownTimer = default;
 
         /// <summary>
         /// Start is called on the frame when a script is enabled just before
@@ -88,11 +111,59 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected IEnumerator WarmUpTrap(Animator animator, 
+                                         GameObject gameObject,
+                                         Collider2D collider)
+        {
+            animator.enabled = true;
+            yield return _wakeUpTimer;
+            animator.enabled = false;
+            StartCoroutine(TrapActive(animator, gameObject, collider));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected IEnumerator TrapActive(Animator animator,
+                                         GameObject gameObject,
+                                         Collider2D collider)
+        {
+            gameObject.SetActive(true);
+            collider.enabled = true;
+            yield return _activeTimer;
+            gameObject.SetActive(false);
+            collider.enabled = false;
+            yield return _cooldownTimer;
+            StartCoroutine(WarmUpTrap(animator, gameObject, collider));
+        }
+
+        /// <summary>
         /// Sent when another object enters a trigger collider attached to this
         /// object (2D physics only).
         /// </summary>
         /// <param name="other">The other Collider2D involved in this collision.
         /// </param>
-        protected abstract void OnTriggerEnter2D(Collider2D other);
+        protected void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                _knockBackDir =
+                    (other.transform.position - transform.position).normalized;
+
+                Player.PlayerBehaviour pStats = other.
+                    GetComponent<Player.PlayerBehaviour>();
+
+                pStats.OnHit(new Vector2(
+                    _knockBack.x * _knockBackDir.x, _knockBack.y));
+
+                print("Im hitting a player");
+                print(_knockBack);
+                print(_knockBackDir);
+            }
+        }
     }
 }

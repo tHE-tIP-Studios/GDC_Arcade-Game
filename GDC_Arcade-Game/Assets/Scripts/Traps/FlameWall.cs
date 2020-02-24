@@ -5,6 +5,8 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
     public class FlameWall : GeneralTrap
     {
         [SerializeField] private Animator animator = default;
+        [SerializeField] private GameObject particle = default;
+        [SerializeField] private BoxCollider2D flameWall = default;
 
         /// <summary>
         /// Start is called on the frame when a script is enabled just before
@@ -12,23 +14,18 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
         /// </summary>
         protected override void Start()
         {
-            
+            _wakeUpTimer = new WaitForSeconds(_wakeUpTime);
+            _activeTimer = new WaitForSeconds(_activeTime);
+            _cooldownTimer = new WaitForSeconds(_cooldownTime);
+            animator.enabled = false;
+            particle.SetActive(false);
+            StartCoroutine(WarmUpTrap(animator, particle, flameWall));
         }
 
         /// <summary>
         /// Update is called every frame, if the MonoBehaviour is enabled.
         /// </summary>
         protected override void Update()
-        {
-            
-        }
-
-        /// <summary>
-        /// Sent when another object enters a trigger collider attached to this
-        /// object (2D physics only).
-        /// </summary>
-        /// <param name="other">The other Collider2D involved in this collision.</param>
-        protected override void OnTriggerEnter2D(Collider2D other)
         {
             
         }
