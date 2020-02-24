@@ -21,7 +21,7 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
         protected override void Update()
         {
             _turnTimer -= Time.deltaTime;
-            MoveSaw();
+            MoveTrap();
             ChangeDirection();
         }
 
