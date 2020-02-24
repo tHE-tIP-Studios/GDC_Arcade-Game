@@ -38,6 +38,16 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
         /// </summary>
         protected bool _moveRight = default;
         /// <summary>
+        /// Variable that contains the time for a trap to activate
+        /// </summary>
+        protected float _wakeUpTime = default;
+        /// <summary>
+        /// Variable responsible to be used on a coroutine to check if trap
+        /// is going to be activated
+        /// </summary>
+        protected WaitForSeconds _wakeUpTimer = default;
+
+        /// <summary>
         /// Start is called on the frame when a script is enabled just before
         /// any of the Update methods is called the first time.
         /// </summary>
