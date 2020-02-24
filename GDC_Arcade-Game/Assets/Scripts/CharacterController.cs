@@ -37,6 +37,8 @@ public class CharacterController : MonoBehaviour
     private bool jumpPressed = false;
     private float timeOfLanding = 0.0f;
 
+    private Animator _anim;
+
     private Vector2 groundPosition
     {
         get
@@ -92,6 +94,7 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
 
         if (groundPoint) coyoteCol = groundPoint.GetComponent<Collider2D>();
         else coyoteCol = null;
@@ -206,5 +209,14 @@ public class CharacterController : MonoBehaviour
             if (movementDir.x > 0.01f) transform.rotation = Quaternion.identity;
             else if (movementDir.x < -0.01f) transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
         }
+
+        UpdateAnimator();
+    }
+
+    private void UpdateAnimator()
+    {
+        _anim.SetBool("IsGrounded", isGrounded);
+        _anim.SetFloat("VerticalVelocity", rb.velocity.y);
+        _anim.SetBool("Walking", Input.GetAxis(xAxis) >= 0.05f || Input.GetAxis(xAxis) <= -0.05f);
     }
 }
