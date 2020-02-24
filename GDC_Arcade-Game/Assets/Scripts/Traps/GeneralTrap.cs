@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 namespace GDC_Arcade_Game.Assets.Scripts.Traps
 {
@@ -38,13 +37,11 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
         /// is going right on the screen
         /// </summary>
         protected bool _moveRight = default;
-
         /// <summary>
         /// Start is called on the frame when a script is enabled just before
         /// any of the Update methods is called the first time.
         /// </summary>
         protected abstract void Start();
-
 
         /// <summary>
         /// Update is called every frame, if the MonoBehaviour is enabled.
@@ -54,7 +51,7 @@ namespace GDC_Arcade_Game.Assets.Scripts.Traps
         /// <summary>
         /// Method to move the saw in a direction
         /// </summary>
-        protected void MoveSaw()
+        protected void MoveTrap()
         {
             if (_moveLeft)
             {
