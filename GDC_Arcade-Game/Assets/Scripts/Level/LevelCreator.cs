@@ -46,7 +46,6 @@ public class LevelCreator : MonoBehaviour
 
     private void Update()
     {
-
         if (!_finished)
         {
             if (ElapsedTime(_timeOfLastTrapPlaced) < _secondsPerTrap)
@@ -96,6 +95,9 @@ public class LevelCreator : MonoBehaviour
         _timeOfLastTrapPlaced = Time.time;
         int index = randomTrap ? Random.Range(0, _possibleTraps.Traps.Length) : _trapIndex;
         Instantiate(_possibleTraps.Traps[index], _possiblePositions.Dequeue(), Quaternion.identity);
+        if (_possiblePositions.Count == 0)
+            OnFinished();
+
     }
 
     private void OnFinished()
