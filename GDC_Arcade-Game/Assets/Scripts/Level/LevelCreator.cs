@@ -16,6 +16,7 @@ public class LevelCreator : MonoBehaviour
     [SerializeField] private byte _targetPlayer = 1;
     [SerializeField] private float _secondsPerTrap = 6.0f;
     [SerializeField] private Transform _spotsHolder = null;
+    [SerializeField] private PossibleTraps _possibleTraps = null;
 
     private Queue<Vector3> _possiblePositions;
 
@@ -26,6 +27,10 @@ public class LevelCreator : MonoBehaviour
     private KeyCode[] _upDownKeys;
 
     private bool _finished;
+
+    private int _trapIndex;
+
+    private float ElapsedTime(float timeOfStart) => Time.time - timeOfStart;
 
     void Awake()
     {
@@ -44,42 +49,59 @@ public class LevelCreator : MonoBehaviour
 
         if (!_finished)
         {
-            if (Input.GetKeyDown(_playerConfirmKey))
+            if (ElapsedTime(_timeOfLastTrapPlaced) < _secondsPerTrap)
             {
-                OnConfirm();
+                if (Input.GetKeyDown(_playerConfirmKey))
+                {
+                    if (_possiblePositions.Count > 0)
+                        OnConfirm(false);
+                }
+                // Up Key
+                else if (Input.GetKeyDown(_upDownKeys[0]))
+                {
+                    OnSelectionUp();
+                }
+                // Down Key
+                else if (Input.GetKeyDown(_upDownKeys[1]))
+                {
+                    OnSelectionDown();
+                }
             }
-            // Up Key
-            else if (Input.GetKeyDown(_upDownKeys[0]))
+            else 
             {
-                OnSelectionUp();
-            }
-            // Down Key
-            else if (Input.GetKeyDown(_upDownKeys[1]))
-            {
-                OnSelectionDown();
+                if (_possiblePositions.Count > 0)
+                    OnConfirm(true);
             }
         }
-        else 
+        else
             OnFinished();
     }
 
     private void OnSelectionUp()
     {
-        
+        _trapIndex++;
+        if (_trapIndex >= _possibleTraps.Traps.Length)
+            _trapIndex = 0;
     }
 
     private void OnSelectionDown()
     {
-
+        _trapIndex--;
+        if (_trapIndex < 0)
+            _trapIndex = _possibleTraps.Traps.Length -1;
     }
 
-    private void OnConfirm()
+    private void OnConfirm(bool randomTrap)
     {
-        _possiblePositions.Peek();
+        _timeOfLastTrapPlaced = Time.time;
+        int index = randomTrap ? Random.Range(0, _possibleTraps.Traps.Length) : _trapIndex;
+        Instantiate(_possibleTraps.Traps[index], _possiblePositions.Dequeue(), Quaternion.identity);
     }
 
     private void OnFinished()
     {
-
-    }
+        _finished = true;
+        DaddyScript.Instance.CreationFinished();
+        Destroy(gameObject);
+    }   
 }
