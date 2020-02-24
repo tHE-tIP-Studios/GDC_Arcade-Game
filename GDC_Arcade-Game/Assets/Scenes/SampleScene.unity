@@ -745,8 +745,7 @@ MonoBehaviour:
   switchDirectionDrag: 0.871
   gravityJumpMultiplier: 3
   groundPoint: {fileID: 1340824657}
-  xAxis: Horizontal
-  jump: Jump
+  controllingPlayer: 0
 --- !u!50 &1522883610
 Rigidbody2D:
   serializedVersion: 4
