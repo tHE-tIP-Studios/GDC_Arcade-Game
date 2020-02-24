@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9c7db59e36b2e418a995b788d10171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveDistant: {x: 20, y: 0, z: 0}
+  _moveDistant: {x: 50, y: 0, z: 0}
   _moveTime: 2
 --- !u!58 &1423496411
 CircleCollider2D:
