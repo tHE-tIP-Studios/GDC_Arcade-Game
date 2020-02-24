@@ -54,6 +54,11 @@ namespace GDC_Arcade_Game.Assets.Scripts.Player
             }
         }
 
+        /// <summary>
+        /// Coroutine responsible for making the player invulnerable to traps
+        /// for a certain time
+        /// </summary>
+        /// <returns> WaitForSeconds with invulnerability time</returns>
         private IEnumerator Invulnerable()
         {
             _isInvulnerable = true;
