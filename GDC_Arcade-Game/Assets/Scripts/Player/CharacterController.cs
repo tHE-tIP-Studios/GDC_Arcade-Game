@@ -38,6 +38,8 @@ namespace GDC_Arcade_Game.Assets.Scripts.Player
         private float timeOfLanding = 0.0f;
         private PlayerInput input;
 
+        [SerializeField] private AudioClip _jumpSound;
+
         private Vector2 groundPosition
         {
             get
@@ -195,6 +197,7 @@ namespace GDC_Arcade_Game.Assets.Scripts.Player
                         jumpPressed = true;
 
                         // Play jump sound
+                        SoundManager.PlaySound(_jumpSound);
                     }
                 }
             }
