@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 7611045042460488558}
   - component: {fileID: 7611045042460488547}
   - component: {fileID: 7611045042460488544}
+  - component: {fileID: 7361721530215652003}
   - component: {fileID: 2432125363063698017}
   m_Layer: 0
   m_Name: Character
@@ -186,8 +187,21 @@ MonoBehaviour:
   switchDirectionDrag: 0.871
   gravityJumpMultiplier: 150
   groundPoint: {fileID: 7611045042109870888}
-  xAxis: Horizontal
-  jump: Jump
+  controllingPlayer: 0
+--- !u!114 &7361721530215652003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611045042460488559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c201cce38d517de4eb767a9a8035c75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHp: 3
+  _invulTime: 1.5
 --- !u!70 &2432125363063698017
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

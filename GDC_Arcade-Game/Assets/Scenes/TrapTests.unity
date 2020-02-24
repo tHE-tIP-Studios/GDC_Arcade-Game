@@ -299,7 +299,18 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2409952212167829518, guid: 2ec079c90e03b104da0cd750c039f654,
+        type: 3}
+      propertyPath: _knockBack.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409952212167829518, guid: 2ec079c90e03b104da0cd750c039f654,
+        type: 3}
+      propertyPath: _knockBack.y
+      value: 200
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2409952212167829518, guid: 2ec079c90e03b104da0cd750c039f654, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ec079c90e03b104da0cd750c039f654, type: 3}
 --- !u!1 &1423496406
 GameObject:
@@ -418,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveDistant: {x: 50, y: 0, z: 0}
   _moveTime: 2
+  _knockBack: {x: 35000, y: 10000}
 --- !u!58 &1423496411
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -428,7 +440,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -9}
